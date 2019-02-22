@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				position: absolute;
+				width: 200px;
+				height: 300px;
+				background: red;
+				cursor:move;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='div'></div>
+	</body>
+	<script type="text/javascript">
+		
+		var oDiv = document.getElementById("div");
+		
+		var disX = 0;
+		var disY = 0;
+		
+		oDiv.onmousedown = function(ev){
+			
+			var ev = ev || window.event;
+			
+			//鼠标距离div的左距离
+			disX = ev.clientX - oDiv.offsetLeft;
+			//鼠标距离div的上距离
+			disY = ev.clientY - oDiv.offsetTop;
+			
+			//每次鼠标按下，都会给document添加mousemove事件。
+			document.onmousemove = function(ev){				
+				var ev = ev || window.event;				
+				oDiv.style.left = ev.clientX - disX + 'px';
+				oDiv.style.top = ev.clientY - disY + 'px';							
+			}
+			
+			document.onmouseup = function(){
+				//document.onmousemove = alert('受死吧mousemove');
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}			
+		}
+		
+		
+		
+		
+	</script>
+</html>
