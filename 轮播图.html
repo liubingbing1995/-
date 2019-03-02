@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding: 0;
+			}
+			div{
+				width: 500px;
+				height: 500px;
+				overflow:hidden; 
+			}
+			ul{
+				width:2000px;
+				height: 500px;
+				position: relative;
+			}
+			li{
+				width: 500px;
+				height:500px;
+				float: left;
+				list-style: none;
+			}
+			img{
+				width: 500px;
+				height: 500px;
+			}
+			#div1{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left:-250px ;
+				margin-top:-250px ;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<ul>
+				<li><img src="img/1.jpg" ></li>
+				<li><img src="img/2.jpg" ></li>
+				<li><img src="img/3.jpg" ></li>
+				<li><img src="img/4.jpg" ></li>
+			</ul>
+		</div>
+		<!-- 面向对象 -->
+		<script type="text/javascript">
+			function Lunbo(){
+				this.t =0;
+				this.timer=null;
+				this.oul =document.getElementsByTagName("ul")[0];
+			}
+			Lunbo.prototype={
+				run(){
+					var _this =this; 
+					this.timer =setInterval(function(){
+						_this.t-=10;
+						_this.oul.style.left =_this.t+"px";
+						if(_this.t==-1500){
+							_this.t=0;
+						};
+						if(_this.t%500==0){
+							clearInterval(_this.timer);
+							setTimeout(function(){
+								_this.run();
+							},2000);
+						}
+					},200)
+					
+				}	
+			}
+			var lunbo =new Lunbo();
+			lunbo.run();
+		</script>
+		<!-- 面向过程 -->
+		<!-- <script type="text/javascript">
+			var oul =document.getElementsByTagName('ul')[0];
+			var t=0;
+			var timer =null;
+			function ab(){
+				timer=setInterval(show,200);
+			}
+			function show(){
+				t-=10;
+				oul.style.left = t+"px";
+				if(t%500==0){
+					clearInterval(timer);
+					setTimeout(ab,2000)
+				}
+				if(t==-1500){
+					t=0;
+				}
+			}
+			
+			ab();
+			
+			
+		</script> -->
+	</body>
+</html>
